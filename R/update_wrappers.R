@@ -30,13 +30,30 @@ update_card_members = function(card, members, ...) {
 
 #' Update card labels
 #'
+#' 
+#' @param labelID label id which could be retrieved from card id.
+#' @param type string containing either 'name' or 'color'
+#' @param value string with the updating value which is dependant to type parameter
+#' @param ... Additional arguments passed to [update_resource()].
+#' @export
+update_card_labels = function(labelID,type,value){
+  stopifnot(is.character(labels))
+  update_resource(
+    resource = "label", id = labelID, path = type,
+    body = list(value = value), ...
+    )
+  
+  }
+
 #' Replace currently assigned labels.
 #' @param card Card id.
 #' @param labels A character vector of one or more label id.
 #' @param ... Additional arguments passed to [update_resource()].
 #' @export
 
-update_card_labels = function(card, labels, ...) {
+
+
+new_card_labels = function(card, labels, ...) {
   stopifnot(is.character(labels))
   update_resource(
     resource = "card", id = card,
